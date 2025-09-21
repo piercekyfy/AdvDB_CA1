@@ -1,0 +1,70 @@
+{
+    "brand_name": "MyBrand",
+    "devices": [
+        {
+            "model_name": "Super Phone",
+            "imageUrl": null,
+            "specifications": {
+                "Body": {
+                    "Dimensions": "156.5 x 75.9 x 8.4 mm (6.16 x 2.99 x 0.33 in)",
+                    "Weight": "150 g (5.29 oz)"
+                },
+                "Display": {
+                    "Type": "IPS"
+                },
+                "Memory": {
+                    "Internal": "8GB 4GB RAM"
+                },
+                "Platform": {
+                    "OS": "Android 7.1 (Nougat)",
+                    "Chipset": "Qualcomm MSM8953 Snapdragon 625 (14 nm)",
+                    "CPU": "Octa-core 2.0 GHz Cortex-A53",
+                    "GPU": "Adreno 506"
+                }
+            }
+        },
+        {
+            "model_name": "Super Phone Ultra",
+            "imageUrl": null,
+            "specifications": {
+                "Body": {
+                    "Dimensions": "45 x 38 x 10.7 mm (1.77 x 1.50 x 0.42 in)",
+                    "Weight": "38.7 g (1.13 oz)"
+                },
+                "Display": {
+                    "Type": "AMOLED"
+                },
+                "Memory": {
+                    "Internal": "16GB 8GB RAM"
+                },
+                "Platform": {
+                    "OS": "Android 7.1 (Nougat)",
+                    "Chipset": "Qualcomm MSM8953 Snapdragon 625 (14 nm)",
+                    "CPU": "Octa-core 2.0 GHz Cortex-A53",
+                    "GPU": "Adreno 506"
+                }
+            }
+        },
+        {
+            "model_name": "Super Phone 2",
+            "imageUrl": null,
+            "specifications": {
+                "Body": {
+                    "Dimensions": "191.7 x 101 x 9.4 mm (7.55 x 3.98 x 0.37 in)",
+                    "Weight": "178 g (5.29 oz)"
+                },
+                "Display": {
+                    "Type": "AMOLED"
+                },
+                "Memory": {
+                    "Internal": "16GB 8GB RAM"
+                },
+                "Platform": {
+                    "OS": "Android 8.1 (Oreo)",
+                    "CPU": "Octa-core (4x1.8 GHz Kryo 260 Gold & 4x1.6 GHz Kryo 260 Silver)",
+                    "GPU": "Adreno 509"
+                }
+            }
+        }
+    ]
+}

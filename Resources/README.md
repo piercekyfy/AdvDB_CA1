@@ -9,5 +9,9 @@ A simple script that prompts for credentials to access a CouchDB database at 'lo
 * A CouchDB instance running on 'localhost:5984'.
 * A dataset file named dataset\_phones.json in the same directory as this script.
 ## Execution
+Run from the same directory as dataset file
+
+> set-executionpolicy remotesigned
+
 > powershell.exe -executionpolicy unrestricted C:\\setup.ps1
 
