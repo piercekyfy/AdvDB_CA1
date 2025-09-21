@@ -1,0 +1,19 @@
+{
+    "views": {
+        "all": {
+            "map": "function(doc) { if(doc.brand_name) { emit(doc.brand_name, doc._rev); } }"
+        },
+        "all_lower": {
+            "map": "function(doc) { if(doc.brand_name) { emit(doc.brand_name.toLowerCase(), doc._rev); } }"
+        },
+        "by_devices": {
+            "map": "function(doc) { if(doc.brand_name) { emit(doc.brand_name, doc.devices ? doc.devices.length : 0); } }",
+            "reduce": "_sum"
+        },
+        "android_devices": {
+            "map": "function(doc) { if(doc.brand_name) { doc.devices.forEach(function(device) { if(device.specifications && device.specifications.Platform && device.specifications.Platform.OS && device.specifications.Platform.OS.toLowerCase().includes(\"android\")) emit(doc.brand_name, device); }) }}",
+            "reduce": "_count"
+        }
+    }
+}
+
