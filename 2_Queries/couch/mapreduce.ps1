@@ -37,3 +37,8 @@ curl.exe '-s', '-X', 'GET', "$url/phones/_design/brands/_view/android_devices"
 Write-Output "`t`Count of android devices per brand:`n"
 curl.exe '-s', '-X', 'GET', "$url/phones/_design/brands/_view/android_devices?group=true" | Select-Object -first 10 | Write-Output
 Write-Output "`t`t..."
+
+# _stats
+
+Write-Output "`n`t`Statistics of android devices in all brands:`n"
+curl.exe '-s', '-X', 'GET', "$url/phones/_design/brands/_view/android_count?reduce=true" | Select-Object -first 10 | Write-Output
