@@ -9,5 +9,6 @@ services:
       COUCHDB_PASSWORD: admin
   mongodb:
     image: mongo:latest
+    container_name: mongodb
     ports:
       - "27017:27017"

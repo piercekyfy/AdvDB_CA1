@@ -9,7 +9,7 @@ curl.exe '-X', 'PUT', "$url/_users"
 curl.exe '-X', 'PUT', "$url/_replicator"
 
 $db_name = 'phones'
-$dataset_file = 'dataset_phones.json'
+$dataset_file = 'processed_dataset_phones.json'
 
 Write-Output "Deleting Existing..."
 curl.exe '-X', 'DELETE', "$url/$db_name"
