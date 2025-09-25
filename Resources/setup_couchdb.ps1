@@ -1,7 +1,20 @@
-$user = Read-Host 'Enter username:'
-$pass = Read-Host 'Enter password:'
+# // POPULATE ENV VARIABLES \\
+$env_file = if (Test-Path './.env') {'./.env'} elseif (Test-Path '../.env') {'../.env'} elseif (Test-Path '../../.env') {'../../.env'} else {throw '.env not found.'}
+Get-Content $env_file | ForEach-Object {
+    if([string]::IsNullOrWhiteSpace($_) -or $_.StartsWith('#')) { return }
+    
+    $parts = $_ -split '=', 2
 
-$url = "http://${user}:${pass}@127.0.0.1:5984/"
+    if(-not $parts.Length -eq 2) { return }
+
+    $name = $parts[0].Trim()
+    $value = $parts[1].Trim()
+
+    Set-Item "env:$name" $value
+}
+# // --------------------- \\
+
+$url = "http://${ENV:COUCHDB_USER}:${ENV:COUCHDB_PASS}@127.0.0.1:5984/"
 
 Write-Output "Performing First Time Configuration..."
 
@@ -9,7 +22,7 @@ curl.exe '-X', 'PUT', "$url/_users"
 curl.exe '-X', 'PUT', "$url/_replicator"
 
 $db_name = 'phones'
-$dataset_file = 'processed_dataset_phones.json'
+$dataset_file = "$PSScriptRoot/processed_dataset_phones.json"
 
 Write-Output "Deleting Existing..."
 curl.exe '-X', 'DELETE', "$url/$db_name"

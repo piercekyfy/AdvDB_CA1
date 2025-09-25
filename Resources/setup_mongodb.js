@@ -16,7 +16,7 @@ console.log("Creating New...");
 console.log(db.createCollection("brands"));
 
 console.log("Uploading Dataset...");
-const data = fs.readFileSync("./processed_dataset_phones.json", { encoding: 'utf-8', flag: 'r' });
+const data = fs.readFileSync(`${__dirname}/processed_dataset_phones.json`, { encoding: 'utf-8', flag: 'r' });
 let dataset = JSON.parse(data);
 console.log({"inserted": Object.keys(db.brands.insertMany(dataset.docs).insertedIds).length});
 
