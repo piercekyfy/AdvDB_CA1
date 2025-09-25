@@ -1,21 +1,24 @@
 {
     "views": {
+        "models": {
+            "map": "function(doc) { if(!doc.model_name) return; emit(doc.model_name, doc._rev); }"
+        },
         "all": {
-            "map": "function(doc) { if(doc.brand_name) { emit(doc.brand_name, doc._rev); } }"
+            "map": "function(doc) { if(!doc.brand_name) return; emit(doc.brand_name, doc._rev); }"
         },
         "all_lower": {
-            "map": "function(doc) { if(doc.brand_name) { emit(doc.brand_name.toLowerCase(), doc._rev); } }"
+            "map": "function(doc) { if(!doc.brand_name) return; emit(doc.brand_name.toLowerCase(), doc._rev); }"
         },
-        "by_devices": {
-            "map": "function(doc) { if(doc.brand_name) { emit(doc.brand_name, doc.devices ? doc.devices.length : 0); } }",
+        "sum_specification_count": {
+            "map": "function(doc) { if(!doc.brand_name) return; emit(doc.brand_name, Object.keys(doc.specifications).length); }",
             "reduce": "_sum"
         },
-        "android_devices": {
-            "map": "function(doc) { if(doc.brand_name) { doc.devices.forEach(function(device) { if(device.specifications && device.specifications.Platform && device.specifications.Platform.OS && device.specifications.Platform.OS.toLowerCase().includes(\"android\")) emit(doc.brand_name, device); }) }}",
+        "count_devices": {
+            "map": "function(doc) { if(!doc.brand_name) return; emit(doc.brand_name, doc._rev); }",
             "reduce": "_count"
         },
-        "android_count": {
-            "map": "function(doc) { if(!doc.brand_name) return; let i = 0; doc.devices.forEach(function(device) { if(device.specifications && device.specifications.Platform && device.specifications.Platform.OS && device.specifications.Platform.OS.toLowerCase().includes(\"android\")) i += 1 }); emit(doc.brand_name, i); }",
+        "android_devices": {
+            "map": "function(doc) { if(!doc.brand_name) return; if(doc.specifications && doc.specifications.Platform && doc.specifications.Platform.OS && doc.specifications.Platform.OS.toLowerCase().includes(\"android\")) emit(doc.brand_name, 1); }",
             "reduce": "_stats"
         }
     }

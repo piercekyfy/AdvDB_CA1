@@ -1,10 +1,7 @@
 {
+    "model_name": "Super Phone",
     "brand_name": "MyBrand",
-    "devices": [
-        {
-            "model_name": "Super Phone",
-            "imageUrl": null,
-            "specifications": {
+    "specifications": {
                 "Body": {
                     "Dimensions": "156.5 x 75.9 x 8.4 mm (6.16 x 2.99 x 0.33 in)",
                     "Weight": "150 g (5.29 oz)"
@@ -16,22 +13,4 @@
                     "Internal": "8GB 4GB RAM"
                 }
             }
-        },
-        {
-            "model_name": "Super Phone Ultra",
-            "imageUrl": null,
-            "specifications": {
-                "Body": {
-                    "Dimensions": "191.7 x 101 x 9.4 mm (7.55 x 3.98 x 0.37 in)",
-                    "Weight": "178 g (5.29 oz)"
-                },
-                "Display": {
-                    "Type": "AMOLED"
-                },
-                "Memory": {
-                    "Internal": "16GB 8GB RAM"
-                }
-            }
-        }
-    ]
 }
