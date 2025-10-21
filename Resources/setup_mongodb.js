@@ -13,12 +13,12 @@ try {
 use("phones")
 
 console.log("Creating New...");
-console.log(db.createCollection("brands"));
+console.log(db.createCollection("devices"));
 
 console.log("Uploading Dataset...");
 const data = fs.readFileSync(`${__dirname}/processed_dataset_phones.json`, { encoding: 'utf-8', flag: 'r' });
 let dataset = JSON.parse(data);
-console.log({"inserted": Object.keys(db.brands.insertMany(dataset.docs).insertedIds).length});
+console.log({"inserted": Object.keys(db.devices.insertMany(dataset.docs).insertedIds).length});
 
 console.log("\n----------------------------- DB Setup Complete! -----------------------------\n")
 console.log("--------------------------- http://127.0.0.1:27017/ --------------------------\n")
