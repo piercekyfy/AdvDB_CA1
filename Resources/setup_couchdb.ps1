@@ -18,19 +18,26 @@ $url = "http://${ENV:COUCHDB_USER}:${ENV:COUCHDB_PASS}@127.0.0.1:5984/"
 
 Write-Output "Performing First Time Configuration..."
 
-curl.exe '-X', 'PUT', "$url/_users"
-curl.exe '-X', 'PUT', "$url/_replicator"
+curl.exe -X PUT "$url/_users"
+curl.exe -X PUT "$url/_replicator"
 
 $db_name = 'phones'
 $dataset_file = "$PSScriptRoot/processed_dataset_phones.json"
 
 Write-Output "Deleting Existing..."
-curl.exe '-X', 'DELETE', "$url/$db_name"
+curl.exe -X DELETE "$url/$db_name"
 Write-Output "Creating New..."
-curl.exe '-X', 'PUT', "$url/$db_name"
+curl.exe -X PUT "$url/$db_name"
 
 Write-Output "Uploading Dataset..."
-curl.exe '-s', '-H', 'Content-Type: application/json', '-X', 'POST', "$url/$db_name/_bulk_docs", '-d', "@$dataset_file" | Out-Null
+curl.exe -s -H 'Content-Type: application/json' -X POST "$url/$db_name/_bulk_docs" -d "@$dataset_file" | Out-Null
+
+Write-Output "Configuring CORS..."
+curl.exe -H "Content-Type: application/json" -X PUT "$url/_node/nonode@nohost/_config/httpd/enable_cors" --% -d "\"true\""
+curl.exe -H 'Content-Type: application/json' -X PUT "$url/_node/nonode@nohost/_config/cors/origins" --% -d "\"*\""
+curl.exe -H "Content-Type: application/json" -X PUT "$url/_node/nonode@nohost/_config/cors/methods" --% -d "\"GET, PUT, POST, HEAD, DELETE\""
+curl.exe -H 'Content-Type: application/json' -X PUT "$url/_node/nonode@nohost/_config/cors/headers" --% -d "\"accept, authorization, content-type, origin, referer\""
+curl.exe -H 'Content-Type: application/json' -X PUT "$url/_node/nonode@nohost/_config/cors/credentials" --% -d "\"true\""
 
 Write-Output "`n----------------------------- DB Setup Complete! -----------------------------`n"
 Write-Output "------------------------- http://127.0.0.1:5984/_utils ------------------------`n"
