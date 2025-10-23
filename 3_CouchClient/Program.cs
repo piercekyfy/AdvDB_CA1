@@ -16,7 +16,7 @@ DotNetEnv.Env.Load();
 
 await using var context = new DevicesContext();
 
-var devices = await context.Devices.Where(device => device.BrandName != "").ToListAsync();
+var devices = await context.Devices.Where(device => device.BrandName == "Acer").ToListAsync();
 
 Console.WriteLine("`\n\tFinding all devices of brand 'Acer':\n");
 

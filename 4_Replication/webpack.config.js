@@ -2,7 +2,7 @@ const HTMLPlugin = require('html-webpack-plugin');
 
 const path = require('path');
 
-require('dotenv').config();
+require('dotenv').config({path: path.resolve(__dirname, '../.env')});
 
 secrets = {
     COUCHDB_USER: process.env.COUCHDB_USER,
@@ -27,6 +27,11 @@ module.exports = {
         hot: true,
         open: true,
         watchFiles: ['src/**/*.html'],
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+        }
     },
     plugins: [
         new HTMLPlugin(({
