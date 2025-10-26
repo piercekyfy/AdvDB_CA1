@@ -55,5 +55,15 @@ Write-Output "`t`t..."
 
 # _stats
 
-Write-Output "`n`t`Statistics of android devices in all brands:`n"
-curl.exe -s -X GET "$url/$db_name/_design/brands/_view/android_devices?reduce=true" | Select-Object -first 10 | Write-Output
+Write-Output "`n`t`Statistics of android devices in ll brands:`n"
+curl.exe -s -X GET "$url/$db_name/_design/brands/_view/android_devices" | Select-Object -first 10 | Write-Output
+
+# custom
+
+Write-Output "`n`t`3.5mm Jacks across Brands:`n"
+curl.exe -s -X GET "$url/$db_name/_design/brands/_view/sound_jacks?group=true&group_level=1" | Select-Object -first 10 | Write-Output
+Write-Output "`t`t..."
+
+Write-Output "`n`t`3.5mm Jacks across Brands and OS:`n"
+curl.exe -s -X GET "$url/$db_name/_design/brands/_view/sound_jacks?group=true&group_level=2" | Select-Object -first 10 | Write-Output
+Write-Output "`t`t..."
