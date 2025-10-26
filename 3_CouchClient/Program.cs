@@ -11,8 +11,7 @@ RedisValue ImageUrlKey = new RedisValue("image");
 using var redis = ConnectionMultiplexer.Connect("localhost");
 IDatabase rdb = redis.GetDatabase();
 
-
-DotNetEnv.Env.Load();
+DotNetEnv.Env.TraversePath().Load();
 
 await using var context = new DevicesContext();
 
